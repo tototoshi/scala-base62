@@ -24,8 +24,7 @@ class Base62(baseString: String = ((0 to 9) ++ ('A' to 'Z') ++ ('a' to 'z')).mkS
   }
 
   def decode(s: String): Long = {
-    s.toList
-      .zip(s.indices.reverse)
+    s.zip(s.indices.reverse)
       .map { case (c, p) => baseString.indexOf(c) * scala.math.pow(62, p).toLong }
       .sum
   }

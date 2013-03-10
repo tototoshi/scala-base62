@@ -19,6 +19,9 @@ class Base62(baseString: String = ((0 to 9) ++ ('A' to 'Z') ++ ('a' to 'z')).mkS
 
   val base = 62
 
+  def using[A, R <: { def close() }](r: R)(f: R => A): A =
+    try { f(r) } finally { r.close() }
+
   if (baseString.size != base) {
     throw new IllegalArgumentException("baseString length must be %d".format(base))
   }

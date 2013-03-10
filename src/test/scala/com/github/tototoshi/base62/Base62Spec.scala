@@ -17,7 +17,6 @@ package com.github.tototoshi.base62
 
 import org.scalatest._
 import org.scalatest.matchers._
-import scala.language.reflectiveCalls
 
 class Base62Spec extends FunSpec with ShouldMatchers with OptionValues {
 

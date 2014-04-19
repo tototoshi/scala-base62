@@ -12,7 +12,7 @@ object Scalabase62Build extends Build {
       version := "0.1.0",
       scalaVersion := "2.10.0",
       scalacOptions <<= scalaVersion.map { sv =>
-        if (sv.startsWith("2.10.0")) {
+        if (sv.startsWith("2.1")) {
           Seq(
             "-deprecation",
             "-language:dynamics",
@@ -28,9 +28,12 @@ object Scalabase62Build extends Build {
           Seq("-deprecation")
         }
       },
-      crossScalaVersions ++= Seq("2.9.0", "2.9.1", "2.9.2", "2.10.0"),
-      libraryDependencies ++= Seq(
-        "org.scalatest" %% "scalatest" % "1.9.1" % "test"
+      crossScalaVersions ++= Seq("2.9.0", "2.9.1", "2.9.2", "2.9.3", "2.10.0", "2.11.0"),
+      libraryDependencies += (
+        if(scalaVersion.value.startsWith("2.1"))
+          "org.scalatest" %% "scalatest" % "2.1.3" % "test"
+        else
+          "org.scalatest" %% "scalatest" % "1.9.1" % "test"
       ),
       initialCommands += "import com.github.tototoshi.base62._"
     ) ++ publishingSettings
